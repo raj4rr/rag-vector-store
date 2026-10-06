@@ -25,8 +25,8 @@ It features an interactive Web UI, chat memory retention using advisors, documen
 ```
 
 - **Framework**: Spring Boot 3.x with Spring AI
-- **LLM Provider**: Ollama (`qwen2.5:0.5B-F16` model)
-- **Embedding Provider**: Ollama (`nomic-embed-text:v1.5` embeddings)
+- **LLM Provider**: Ollama (`qwen2.5:1.5b` model)
+- **Embedding Provider**: Ollama (`nomic-embed-text` embeddings)
 - **Vector Store**: Redis Stack (`redis/redis-stack:7.2.0-v18`)
 - **Document Ingestion**: Spring AI Document Readers (`MarkdownDocumentReader`, `PagePdfDocumentReader`, `TikaDocumentReader`) and `TokenTextSplitter`
 - **Conversation State**: `MessageChatMemoryAdvisor` tracked via `X-CONV-ID` HTTP session cookies
@@ -37,10 +37,10 @@ It features an interactive Web UI, chat memory retention using advisors, documen
 
 1. **Java 21+** installed
 2. **Docker & Docker Compose** installed
-3. **Ollama** running locally on `http://localhost:12434` with required models pulled:
+3. **Ollama** running locally on `http://localhost:11434` with required models pulled:
    ```bash
-   ollama pull qwen2.5:0.5B-F16
-   ollama pull nomic-embed-text:v1.5
+   ollama pull qwen2.5:1.5b
+   ollama pull nomic-embed-text
    ```
 
 ---
@@ -74,13 +74,14 @@ Set properties in [`src/main/resources/application.properties`](file:///Users/ra
 
 ```properties
 spring.application.name=rag-ai-course
-spring.ai.ollama.base-url=http://localhost:12434
-spring.ai.ollama.chat.options.model=qwen2.5:0.5B-F16
+spring.ai.ollama.base-url=http://localhost:11434
+spring.ai.ollama.chat.options.model=qwen2.5:1.5b
 spring.ai.ollama.chat.options.temperature=1
-spring.ai.ollama.embedding.model=nomic-embed-text:v1.5
+server.port=8080
+
+spring.ai.ollama.embedding.options.model=nomic-embed-text
 
 spring.ai.vectorstore.redis.initialize-schema=true
-server.port=8080
 ```
 
 ---

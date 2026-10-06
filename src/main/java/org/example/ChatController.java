@@ -33,9 +33,9 @@ class ChatController {
     ChatController(ChatClient.Builder builder,
                    ChatMemory chatMemory,
                    VectorStore vectorStore,
-                   EmbeddingModel embeddingModel, VectorStore vectorStore1) {
+                   EmbeddingModel embeddingModel) {
         this.embeddingModel = embeddingModel;
-        this.vectorStore = vectorStore1;
+        this.vectorStore = vectorStore;
         this.chatClient = builder
                 .defaultAdvisors(
                         MessageChatMemoryAdvisor.builder(chatMemory).build(),
